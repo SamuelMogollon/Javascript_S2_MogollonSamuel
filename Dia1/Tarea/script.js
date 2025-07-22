@@ -1,6 +1,9 @@
+
+let gastos = []
+
 booleanito = true;
-while (booleanito == true) {
-    console.log(`
+while (booleanito === true) {
+    let menu1 = parseInt(prompt(`
     =============================================
     Simulador de Gasto Diario
     =============================================
@@ -12,26 +15,52 @@ while (booleanito == true) {
     4. Generar reporte de gastos
     5. Salir
     =============================================
-    `);
-    let valor1 = prompt("Ingresa la opcion: ", 0);
-    if (valor1 === "1") {
-        console.log(`
+    `));
+    if (menu1 === 1) {
+        let montoGasto = prompt(`
             =============================================
             Registrar Nuevo Gasto
             =============================================
             Ingrese la información del gasto:
 
-            - Monto del gasto:
-            - Categoría (ej. comida, transporte, entretenimiento, otros):
-            - Descripción (opcional):
-
-            Ingrese 'S' para guardar o 'C' para cancelar.
+            - Monto del gasto:`)
+            let categoria = prompt (`
             =============================================
-        `)
+            Registrar Nuevo Gasto
+            =============================================
+            Ingrese la informacion del gasto:
+
+            Monto del gasto:
+            =============================================
+
+            - Categoría (ej. comida, transporte, entretenimiento, otros):
+            - Descripción (opcional): `)
+                    let descripcion = prompt (` =============================================
+                    Registrar Nuevo Gasto
+                    =============================================
+                    Ingrese la información del gasto:
+
+                    descripcion:
+                    =============================================`)
+                            let guardar = prompt(`Ingrese 'S' para guardar o 'C' para cancelar.`)
+                            if (guardar === "s") {
+                                let gastoNuevo = {
+                                    "montoGasto": montoGasto,
+                                    "categoria": categoria,
+                                    "descripcion": descripcion,
+                                }
+                                gastos.push(gastoNuevo);
+                                alert(gastos.toString)
+                                
+                                for(let i=0; i>gastos.length; i++){
+                                    console.log(gastos[i]);
+                                }
+                            }
+        
     }
 
-    else if (valor1 === "2") {
-        console.log(`
+    else if (menu1 === "2") {
+        let menu3 = prompt(`
             =============================================
             Listar Gastos
             =============================================
@@ -45,8 +74,8 @@ while (booleanito == true) {
         `)
     }
 
-    else if (valor1==="3") {
-        console.log(`
+    else if (menu1 === "3") {
+        let menu4 = prompt(`
             =============================================
             Calcular Total de Gastos
             =============================================
@@ -60,8 +89,8 @@ while (booleanito == true) {
         `)
     }
 
-    else if (valor1==="4") {
-        console.log(`
+    else if (menu1 === "4") {
+        let menu5 = prompt(`
             =============================================
            Generar Reporte de Gastos
             =============================================
@@ -75,8 +104,8 @@ while (booleanito == true) {
         `)
     }
 
-    else if (valor1==="5") {
-        let valor2 = prompt("¿Desea salir del programa? (S/N):", 0);
+    else if (menu1 === "5") {
+        let menu6 = prompt("¿Desea salir del programa? (S/N):");
         if (valor2 === "S") {
             (booleanito = false);
         }
