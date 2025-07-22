@@ -23,44 +23,54 @@ while (booleanito === true) {
             =============================================
             Ingrese la información del gasto:
 
-            - Monto del gasto:`)
-            let categoria = prompt (`
+            - Monto del gasto:
+            `)
+        let categoria = prompt(`
             =============================================
             Registrar Nuevo Gasto
             =============================================
             Ingrese la informacion del gasto:
 
-            Monto del gasto:
-            =============================================
-
             - Categoría (ej. comida, transporte, entretenimiento, otros):
-            - Descripción (opcional): `)
-                    let descripcion = prompt (` =============================================
-                    Registrar Nuevo Gasto
-                    =============================================
-                    Ingrese la información del gasto:
 
-                    descripcion:
-                    =============================================`)
-                            let guardar = prompt(`Ingrese 'S' para guardar o 'C' para cancelar.`)
-                            if (guardar === "s") {
-                                let gastoNuevo = {
-                                    "montoGasto": montoGasto,
-                                    "categoria": categoria,
-                                    "descripcion": descripcion,
-                                }
-                                gastos.push(gastoNuevo);
-                                alert(gastos.toString)
-                                
-                                for(let i=0; i>gastos.length; i++){
-                                    console.log(gastos[i]);
-                                }
-                            }
-        
-    }
+            =============================================
+            `)
+        let fecha = prompt (`
+            =============================================
+            Registrar un Nuevo Gasto:
+            =============================================
+            Ingrese la informacion del gasto:
 
-    else if (menu1 === "2") {
-        let menu3 = prompt(`
+            Fecha en formato AAAA-MM-DD:
+            =============================================
+        `)
+        let descripcion = prompt(`
+            =============================================
+            Registrar Nuevo Gasto
+            =============================================
+            Ingrese la información del gasto:
+
+            descripcion:
+            =============================================
+            `)
+        let guardar = prompt(`Ingrese 'S' para guardar o 'C' para cancelar.`).toLowerCase();
+        if (guardar === "s") {
+            let gastoNuevo = {
+                "montoGasto": montoGasto,
+                "categoria": categoria,
+                "descripcion": descripcion,
+                "fecha": fecha.toISOstring
+            }
+            gastos.push(gastoNuevo);
+            alert(gastos.toString);
+        } else if (guardar === "c") {
+            alert("Gasto no guardado");
+        } else {
+            alert("Ingresa una opcion valida");
+        };
+    };
+}; if (menu1 === "2") {
+    let listaGastos = prompt(`
             =============================================
             Listar Gastos
             =============================================
@@ -71,10 +81,27 @@ while (booleanito === true) {
             3. Filtrar por rango de fechas
             4. Regresar al menú principal
             =============================================
-        `)
+        `);
+    if (listaGastos === '1') {
+        let gastos1 = ''
+
+        for (let i = 0; i < gastos.length; i++) {
+            const element = gastos[i];
+            gastos1 = gastos1 + element;
+        }
+        alert(gastos1);
+    }
+    else if (listaGastos === '2') {
+        let categoriaBuscar = prompt("Ingrese la categoria que desea buscar")
+        gastos.find(categoria)
+        const found = gasto.filter((gastos) => gastos.categoria == categoria)
+        alert(found)
+    };
+        else if (listaGastos === '3') {
+
     }
 
-    else if (menu1 === "3") {
+    if (menu1 === "3") {
         let menu4 = prompt(`
             =============================================
             Calcular Total de Gastos
