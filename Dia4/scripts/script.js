@@ -133,8 +133,9 @@ while (booleanito == true) {
             
             Stock del ingrediente:
             `)
+            listaIngredientes.push(nombreI,descripcionI,precioI,stockI);
         }
-        else if (anadir === '2') {
+        if (anadir === '2') {
             let nombreC = prompt(`
             =============================================
             Añadir Categoria
@@ -151,6 +152,7 @@ while (booleanito == true) {
 
             Descripcion de la Categoria:
             `)
+            listaCategorias.push(nombreC,descripcionC);
         }
         else if (anadir === '3') {
             let nombreH = prompt(`
@@ -183,6 +185,7 @@ while (booleanito == true) {
             Ingrese la informacion de la Hamburguesa:
             
             Precio de la Hamburguesa:`)
+            listaIngredientes.push(nombreH,categoriaH,ingredientesH,precioH);
         }
         else if (anadir === '4') {
             let nombreChef = prompt(`
@@ -201,6 +204,7 @@ while (booleanito == true) {
 
             Especialidad del Chef:
             `)
+            listaChefs.push(nombreChef,especialidadChef);
         }
     }
     else if (menu1 === '2') {
@@ -217,10 +221,10 @@ while (booleanito == true) {
         if (listarInventario === '1') {
             for (let i = 0; i < listaIngredientes.length; i++) {
                 alert: (
-                    "nombre" = listaIngredientes[i]["nombre"],
-                    "descripcion" = listaIngredientes[i]["descripcion"],
-                    "precio" = listaIngredientes[i]["precio"],
-                    "stock" = listaIngredientes[i]["stock"]
+                    "Nombre:" == listaIngredientes[i]["nombreI"],
+                    "Descripcion:" == listaIngredientes[i]["descripcionI"],
+                    "Precio:" == listaIngredientes[i]["precioI"],
+                    "Stock:" == listaIngredientes[i]["stockI"]
                 )
             }
 
