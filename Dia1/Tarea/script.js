@@ -97,8 +97,7 @@ while (booleanito === true) {
         const found = gasto.filter((gastos) => gastos.categoria == categoria)
         alert(found)
     };
-        else if (listaGastos === '3') {
-
+    else if (listaGastos === '3') {
     }
 
     if (menu1 === "3") {
