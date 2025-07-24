@@ -114,8 +114,8 @@ while (booleanito === true) {
 
                 let listarIngredientes = ""
 
-                for(let i = 0; i < listaIngredientes.length; i++) {
-                    listarIngredientes = listarIngredientes +(
+                for (let i = 0; i < listaIngredientes.length; i++) {
+                    listarIngredientes = listarIngredientes + (
                         "ID : " + (i + 1) + "\n" +
                         "Nombre : " + listaIngredientes[i]["nombre"] + "\n" +
                         "Descripcion : " + listaIngredientes[i]["descripcion"] + "\n" +
@@ -126,11 +126,11 @@ while (booleanito === true) {
                 }
                 alert(listarIngredientes)
             }
-            else if (menuIngredientes ===  3) {
+            else if (menuIngredientes === 3) {
                 let listarIngredientes = ""
 
-                for(let i = 0; i < listaIngredientes.length; i++) {
-                    listarIngredientes = listarIngredientes +(
+                for (let i = 0; i < listaIngredientes.length; i++) {
+                    listarIngredientes = listarIngredientes + (
                         "ID : " + (i + 1) + "\n" +
                         "Nombre : " + listaIngredientes[i]["nombre"] + "\n" +
                         "Descripcion : " + listaIngredientes[i]["descripcion"] + "\n" +
@@ -141,9 +141,58 @@ while (booleanito === true) {
                 }
                 alert(listarIngredientes)
                 let actualizarIngredientes = parseInt(prompt(
-                    "*"
+                    "Ingrese el ID del dato a actualizar: "
                 ));
+                let confirmarIngredienteNew = parseInt(prompt(
+                    "Nombre : " + listaIngredientes[actualizarIngredientes - 1]["nombre"] + "\n" +
+                    "Descripcion : " + listaIngredientes[actualizarIngredientes - 1]["descripcion"] + "\n" +
+                    "Precio : " + listaIngredientes[actualizarIngredientes - 1]["precio"] + "\n" +
+                    "Stock : " + listaIngredientes[actualizarIngredientes - 1]["stock"] + "\n" + "\n" +
+                    "Estas seguro que deseas modificar este dato       1.Si 2.No"
+                ));
+                if (confirmarIngredienteNew === 1) {
+                    let nombreINew = prompt("Ingrese el nombre del ingrediente")
+                    let descripcionINew = prompt("Ingrese la descripcion del ingrediente")
+                    let precioINew = prompt("Ingrese el precio del ingrediente")
+                    let stockINew = prompt("Ingrese el stock del ingrediente")
+                    let ingredienteActualizado = { "nombre": nombreINew, "descripcion": descripcionINew, "precio": precioINew, "stock": stockINew }
+                    listaIngredientes[actualizarIngredientes - 1] = ingredienteActualizado
+                }
+                else {
+                    alert("Gracias por Confirmar")
+                }
+            }
+            else if (menuIngredientes === 4) {
+                let listarIngredientes = ""
+
+                for (let i = 0; i < listaIngredientes.length; i++) {
+                    listarIngredientes = listarIngredientes + (
+                        "ID : " + (i + 1) + "\n" +
+                        "Nombre : " + listaIngredientes[i]["nombre"] + "\n" +
+                        "Descripcion : " + listaIngredientes[i]["descripcion"] + "\n" +
+                        "Precio : " + listaIngredientes[i]["precio"] + "\n" +
+                        "Stock : " + listaIngredientes[i]["stock"] + "\n"
+                    );
+
+                }
+                alert(listarIngredientes)
+                let eliminarIngrediente = parseInt(prompt("Ingrese el ID del dato a eliminar: "))
+                let confirmarEliminarI = parseInt(prompt(
+                    "Nombre : " + listaIngredientes[eliminarIngrediente - 1]["nombre"] + "\n" +
+                    "Descripcion : " + listaIngredientes[eliminarIngrediente - 1]["descripcion"] + "\n" +
+                    "Precio : " + listaIngredientes[eliminarIngrediente - 1]["precio"] + "\n" +
+                    "Stock : " + listaIngredientes[eliminarIngrediente - 1]["stock"] + "\n" + "\n" +
+                    "Esta seguro de eliminar este dato  1.Si 2.No"));
+                if (confirmarEliminarI === 1) {
+                    listaIngredientes.pop(eliminarIngrediente - 1)
+                    alert("El dato ha sido eliminado")
+                }
+                else {
+                    alert("Gracias por Confirmar!!!!!!!!!!!")
+                }
+
             }
         }
     }
 }
+
