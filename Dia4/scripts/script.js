@@ -75,159 +75,75 @@ listaChefs = [
 ]
 
 booleanito = true;
-while (booleanito == true) {
-    let menu1 = parseInt(prompt(`
-    =============================================
-    Menù Inventario Efectivo
-    =============================================
-    Ingrese la informacion del ingrediente
-    1. Añadir Inventario
-    2. Listar Inventario
-    3. Actualizar inventario
-    4. Eliminar datos
-    5. Salir
-    =============================================
-    `))
-    if (menu1 === 1) {
-        let anadir = prompt(`
-        =============================================
-        Menù Añadir al Inventario
-        =============================================
-        1. Añadir Ingrediente
-        2. Añadir Categorìa
-        3. Añadir Hamburguesa
-        4. Añadir Chef
-        5. Salir
-        =============================================
-        `)
-        if (anadir === '1') {
-            let nombreI = prompt(`
-            =============================================
-            Añadir Ingrediente
-            =============================================
-            Ingrese la informaciòn del ingredente:
-    
-            Nombre del ingrediente:
-            `)
-            let descripcionI = prompt(`
-            =============================================
-            Añadir Ingrediente
-            =============================================
-            Ingrese la informacion del ingrediente:
-                
-            Descripcion del ingrediente:
-            `)
-            let precioI = prompt(`
-            =============================================
-            Añadir Ingrediente
-            =============================================
-            Ingrese la informacion del ingrediente:
-                
-            Precio del ingrediente:
-            `)
-            let stockI = prompt(`
-            =============================================
-            Añadir Ingrediente
-            =============================================
-            Ingrese la informacion del ingrediente:
-            
-            Stock del ingrediente:
-            `)
-            listaIngredientes.push(nombreI,descripcionI,precioI,stockI);
-        }
-        if (anadir === '2') {
-            let nombreC = prompt(`
-            =============================================
-            Añadir Categoria
-            =============================================
-            Ingrese la informacion de la categoria:
+boolIngrediente = true;
+boolHmaburguesa = true;
+boolCategoria = true;
+boolChef = true;
 
-            Nombre de la Categoria:
-            `)
-            let descripcionC = prompt(`
-            =============================================
-            Añadir Categoria
-            =============================================
-            Ingrese la informacion de la categoria:
+while (booleanito === true) {
+    let menu = parseInt(prompt(
+        "=======================================================" + "\n" +
+        "Elija el modulo que quiere ver" + "\n" +
+        "=======================================================" + "\n" +
+        "1. Ingrediente" + "\n" +
+        "2. categorias" + "\n" +
+        "3. hamburguesas" + "\n" +
+        "4. Chef" + "\n" +
+        "5. Salir"))
 
-            Descripcion de la Categoria:
-            `)
-            listaCategorias.push(nombreC,descripcionC);
-        }
-        else if (anadir === '3') {
-            let nombreH = prompt(`
-            =============================================
-            Añadir Hamburguesa
-            =============================================
-            Ingrese la infomacion de la Hamburguesa:
-            
-            Nombre de la Hamburguesa:
-            `)
-            let categoriaH = prompt(`
-            =============================================
-            Añadir Hamburguesa
-            =============================================
-            Ingrese la informacion de la Hamburguesa:
-            
-            Categoria de la Hamburguesa:`
-            )
-            let ingredientesH = prompt(`
-            =============================================
-            Añadir Hamburguesa
-            =============================================
-            Ingrese la informacion de la Hamburguesa:
-            
-            Ingredientes de la Hamburguesa:`)
-            let precioH = prompt(`
-            =============================================
-            Añadir Hamburguesa
-            =============================================
-            Ingrese la informacion de la Hamburguesa:
-            
-            Precio de la Hamburguesa:`)
-            listaIngredientes.push(nombreH,categoriaH,ingredientesH,precioH);
-        }
-        else if (anadir === '4') {
-            let nombreChef = prompt(`
-            =============================================
-            Añadir Chef
-            =============================================
-            Ingrese la informacion del Chef:
-
-            Nombre del Chef:
-            `)
-            let especialidadChef = prompt(`
-            =============================================
-            Añadir Chef
-            =============================================
-            Ingrese la informacion del Chef:
-
-            Especialidad del Chef:
-            `)
-            listaChefs.push(nombreChef,especialidadChef);
-        }
-    }
-    else if (menu1 === '2') {
-        let listarInventario = prompt(`
-        =============================================
-        Menù Listar Inventario
-        =============================================
-        1. Listar Ingredientes
-        2. Listar Categorias
-        3. Listar Hamburguesas
-        4. Listar Chefs
-        5. Salir
-        `)
-        if (listarInventario === '1') {
-            for (let i = 0; i < listaIngredientes.length; i++) {
-                alert: (
-                    "Nombre:" == listaIngredientes[i]["nombreI"],
-                    "Descripcion:" == listaIngredientes[i]["descripcionI"],
-                    "Precio:" == listaIngredientes[i]["precioI"],
-                    "Stock:" == listaIngredientes[i]["stockI"]
-                )
+    if (menu === 1) {
+        while (boolIngrediente === true) {
+            let menuIngredientes = parseInt(prompt(
+                "=======================================================" + "\n" +
+                "Elija la opcion" + "\n" +
+                "=======================================================" + "\n" +
+                "1. Crear" + "\n" +
+                "2. listar" + "\n" +
+                "3. actualizar" + "\n" +
+                "4. eliminar" + "\n" +
+                "5. Salir"))
+            if (menuIngredientes === 1) {
+                let nombreI = prompt("Ingrese el nombre del ingrediente")
+                let descripcionI = prompt("Ingrese la descripcion del ingrediente")
+                let precioI = prompt("Ingrese el precio del ingrediente")
+                let stockI = prompt("Ingrese el stock del ingrediente")
+                let crearIngrediente = { "nombre": nombreI, "descripcion": descripcionI, "precio": precioI, "stock": stockI }
+                listaIngredientes.push(crearIngrediente);
             }
+            else if (menuIngredientes === 2) {
 
+                let listarIngredientes = ""
+
+                for(let i = 0; i < listaIngredientes.length; i++) {
+                    listarIngredientes = listarIngredientes +(
+                        "ID : " + (i + 1) + "\n" +
+                        "Nombre : " + listaIngredientes[i]["nombre"] + "\n" +
+                        "Descripcion : " + listaIngredientes[i]["descripcion"] + "\n" +
+                        "Precio : " + listaIngredientes[i]["precio"] + "\n" +
+                        "Stock : " + listaIngredientes[i]["stock"] + "\n"
+                    );
+
+                }
+                alert(listarIngredientes)
+            }
+            else if (menuIngredientes ===  3) {
+                let listarIngredientes = ""
+
+                for(let i = 0; i < listaIngredientes.length; i++) {
+                    listarIngredientes = listarIngredientes +(
+                        "ID : " + (i + 1) + "\n" +
+                        "Nombre : " + listaIngredientes[i]["nombre"] + "\n" +
+                        "Descripcion : " + listaIngredientes[i]["descripcion"] + "\n" +
+                        "Precio : " + listaIngredientes[i]["precio"] + "\n" +
+                        "Stock : " + listaIngredientes[i]["stock"] + "\n"
+                    );
+
+                }
+                alert(listarIngredientes)
+                let actualizarIngredientes = parseInt(prompt(
+                    "*"
+                ));
+            }
         }
     }
 }
