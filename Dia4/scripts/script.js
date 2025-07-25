@@ -147,6 +147,7 @@ while (booleanito === true) {
                     "Nombre : " + listaIngredientes[actualizarIngredientes - 1]["nombre"] + "\n" +
                     "Descripcion : " + listaIngredientes[actualizarIngredientes - 1]["descripcion"] + "\n" +
                     "Precio : " + listaIngredientes[actualizarIngredientes - 1]["precio"] + "\n" +
+
                     "Stock : " + listaIngredientes[actualizarIngredientes - 1]["stock"] + "\n" + "\n" +
                     "Estas seguro que deseas modificar este dato       1.Si 2.No"
                 ));
@@ -190,7 +191,130 @@ while (booleanito === true) {
                 else {
                     alert("Gracias por Confirmar!!!!!!!!!!!")
                 }
+            }
+            let menuCategoria = parseInt(prompt(
+                "=======================================================" + "\n" +
+                "Elija la opcion" + "\n" +
+                "=======================================================" + "\n" +
+                "1. Crear" + "\n" +
+                "2. listar" + "\n" +
+                "3. actualizar" + "\n" +
+                "4. eliminar" + "\n" +
+                "5. Salir"))
+            if (menuCategoria == 1) {
+                let nombreC = prompt("Ingrese el nombre del ingrediente")
+                let descripcionC = prompt("Ingrese la descripcion del ingrediente")
+                let precioC = prompt("Ingrese el precio del ingrediente")
+                let stockC = prompt("Ingrese el stock del ingrediente")
+                let crearCategoria = { "nombre": nombreC, "descripcion": descripcionC, "precio": precioC, "stock": stockC }
+                listaCategorias.push(crearCategoria);
+            }
+            else if (menuCategoria === 2) {
 
+                let listarCategorias = ""
+
+                for (let i = 0; i < listaCategorias.length; i++) {
+                    listarCategorias = listarCategorias + (
+                        "ID : " + (i + 1) + "\n" +
+                        "Nombre : " + listaCategorias[i]["nombre"] + "\n" +
+                        "Descripcion : " + listaCategorias[i]["descripcion"] + "\n" +
+                        "Precio : " + listaCategorias[i]["precio"] + "\n" +
+                        "Stock : " + listaCategorias[i]["stock"] + "\n"
+                    );
+
+                }
+                alert(listarCategorias)
+            }
+            else if (menuCategoria === 3) {
+                let listarCategorias = ""
+
+                for (let i = 0; i < listaCategorias.length; i++) {
+                    listarCategorias = listarCategorias + (
+                        "ID : " + (i + 1) + "\n" +
+                        "Nombre : " + listaCategorias[i]["nombre"] + "\n" +
+                        "Descripcion : " + listaCategorias[i]["descripcion"] + "\n" +
+                        "Precio : " + listaCategorias[i]["precio"] + "\n" +
+                        "Stock : " + listaCategorias[i]["stock"] + "\n"
+                    );
+
+                }
+                alert(listarCategorias)
+                let actualizarCategorias = parseInt(prompt(
+                    "Ingrese el ID del dato a actualizar: "
+                ));
+                let confirmarCategoriaNew = parseInt(prompt(
+                    "Nombre : " + listaCategorias[actualizarCategorias - 1]["nombre"] + "\n" +
+                    "Descripcion : " + listaCategorias[actualizarCategorias - 1]["descripcion"] + "\n" +
+                    "Precio : " + listaCategorias[actualizarCategorias - 1]["precio"] + "\n" +
+                    "Stock : " + listaCategorias[actualizarCategorias - 1]["stock"] + "\n" + "\n" +
+                    "Estas seguro que deseas modificar este dato       1.Si 2.No"
+                ));
+                if (confirmarCategoriaNew === 1) {
+                    let nombreCNew = prompt("Ingrese el nombre del ingrediente")
+                    let descripcionCNew = prompt("Ingrese la descripcion del ingrediente")
+                    let precioCNew = prompt("Ingrese el precio del ingrediente")
+                    let stockCNew = prompt("Ingrese el stock del ingrediente")
+                    let categoriaActualizada = { "nombre": nombreCNew, "descripcion": descripcionCNew, "precio": precioCNew, "stock": stockCNew }
+                    listaCategorias[actualizarCategorias - 1] = categoriaActualizada
+                }
+                else {
+                    alert("Gracias por Confirmar")
+                }
+            }
+            else if (menuCategoria === 4) {
+                let listarCategorias = ""
+
+                for (let i = 0; i < listaCategorias.length; i++) {
+                    listarCategorias = listarCategorias + (
+                        "ID : " + (i + 1) + "\n" +
+                        "Nombre : " + listaCategorias[i]["nombre"] + "\n" +
+                        "Descripcion : " + listaCategorias[i]["descripcion"] + "\n" +
+                        "Precio : " + listaCategorias[i]["precio"] + "\n" +
+                        "Stock : " + listaCategorias[i]["stock"] + "\n"
+                    );
+
+                }
+                alert(listarCategorias)
+
+                let eliminarCategoria = parseInt(prompt("Ingrese el ID del dato a eliminar: "))
+                let confirmarEliminarC = parseInt(prompt(
+                    "Nombre : " + listaCategorias[eliminarCategoria - 1]["nombre"] + "\n" +
+                    "Descripcion : " + listaCategorias[eliminarCategoria - 1]["descripcion"] + "\n" +
+                    "Precio : " + listaCategorias[eliminarCategoria - 1]["precio"] + "\n" +
+                    "Stock : " + listaCategorias[eliminarCategoria - 1]["stock"] + "\n" + "\n" +
+                    "Esta seguro de eliminar este dato  1.Si 2.No"));
+                if (confirmarEliminarC === 1) {
+                    listaCategorias.pop(eliminarCategoria - 1)
+                    alert("El dato ha sido eliminado")
+                }
+                else {
+                    alert("Gracias por Confirmar!!!!!!!!!!!")
+                }
+            }
+            let menuHamburguesas = parseInt(prompt(
+                "=======================================================" + "\n" +
+                "Elija la opcion" + "\n" +
+                "=======================================================" + "\n" +
+                "1. Crear" + "\n" +
+                "2. listar" + "\n" +
+                "3. actualizar" + "\n" +
+                "4. eliminar" + "\n" +
+                "5. Salir"))
+            if (menuHamburguesas === 1) {
+                ingredientesList = []
+
+                let nombreH = prompt("Ingrese el nombre del ingrediente")
+                let categoriaH = prompt("Ingrese la descripcion del ingrediente")
+                let ingredientesH = parseInt(prompt("Ingrese cuantos ingredientes desea agregar"))
+                for(let k= 0; k<ingredientesH; k++){
+                    let ingredientesHamburguesa = prompt("Ingrese el ingrediente:  ");
+                    ingredientesList.push(ingredientesHamburguesa);
+                    
+                }
+                let precioH = prompt("Ingrese el precio del ingrediente")
+                let chefH = prompt("Ingrese el stock del ingrediente")
+                let crearHamburguesa = { "nombre": nombreH, "categoria": categoriaH, "ingredientes": ingredientesH, "precio": precioH, "chef" : chefH}
+                listaHamburguesas.push(crearHamburguesa);
             }
         }
     }
