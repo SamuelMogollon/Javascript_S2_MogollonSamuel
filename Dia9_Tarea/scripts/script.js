@@ -1,7 +1,7 @@
-function buscarP() {
++function buscarP() {
     const Id = document.getElementById("mainInput").value;
     const xhr = new XMLHttpRequest();
-    const url = `https://pokeapi.co/api/v2/pokemon/${Id}`;
+    const url = `https://pokeapi.co/api/v2/pokedex/${Id}`;
     xhr.open("GET", url, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
