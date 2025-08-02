@@ -1,11 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: darkgreen;
+    background-image: url('../img/fondo_login.jpg');
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-size: cover
 }
 
 .mainContainer {
@@ -33,11 +34,7 @@ body {
     height: 2vw;
     cursor: pointer;
     font-size: 1vw;
-    padding: 1vw;   
+    padding: 1vw;
+     
 }
 
-.pica {
-    align-items: center;
-    width: 20vw;
-    height: auto;
-}
