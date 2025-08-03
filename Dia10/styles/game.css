@@ -1,14 +1,93 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: darkgreen;
+    background-image: url('../img/fondo_rules.jpg');
+    display: block;
+    justify-content: center;
+    min-height: 100vh;
+    background-size: cover;
+    align-items: flex-start;
+}
+
+header {
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;    
+    width: 100%;
+    justify-content: space-between;
+}
+
+.exit {
+    display: flex;
+    margin: 0 auto;
+    width: 50px;
+    height: auto;
+    background-color: white;
+    border-radius: 100%;
+    margin-top: 4vw;
+}
+
+.tituloBJ {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 5vw;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    
+}
+
+.containerCardsPlayer {
+    display: block;
+}
+
+.containerCardsCrupier {
+    display: block;
+}
+
+.cartaImg {
+    display: flex;
+    width: 15vw;
+    height: auto;
+    padding-left: 2vw;
+}
+
+
+.botonesGame{
+    display: flex;
+}
+
+.pedirCarta {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    border-radius: 3vw;
+    width: 10vw;
+    height: 2vw;
+    cursor: pointer;
+    font-size: 1vw;
+    padding: 1vw;
+    border: none;
+    color: black;
+    background: white;
 }
 
-.newBaraja {
-    width: 100px;
-    height: auto;
+.plantarse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3vw;
+    width: 10vw;
+    height: 2vw;
+    cursor: pointer;
+    font-size: 1vw;
+    padding: 1vw;
+    border: none;
+    color: black;
+    background: white;
 }

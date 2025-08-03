@@ -1,17 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack By SamuelMJ</title>
     <link rel="stylesheet" href="../styles/rules.css">
 </head>
+
 <body>
     <header>
         <a href="http://127.0.0.1:5500/Dia10/index.html"><img class="exit" src="../img/hacia-atras.svg"></img></a>
         <h1 class="tituloRules">RULES</h1>
         <div class=""></div>
     </header>
+    <main>
+        <div class="textoReglas">
+            <p><strong>- Objetivo del juego</strong> <br>
+                Vencer al crupier (dealer) sin pasarte de 21 puntos. <br><br>
+
+                <strong>- Valores de las cartas</strong> <br>
+                Números del 2 al 10: valen su número. <br>
+
+                J, Q, K (figuras): valen 10 puntos. <br>
+
+                As (A): vale 1 o 11, dependiendo de lo que más convenga. <br><br>
+
+                <strong>- Jugadores</strong> <br>
+                Un duelo contra el crupier. <br>
+
+                El jugador recibe 2 cartas al comienzo. <br><br>
+
+                <strong>- Opciones del jugador</strong> <br>
+                Después de recibir sus dos cartas, el jugador puede: <br>
+
+                Pedir (Hit): tomar otra carta. <br>
+                Plantarse (Stand): quedarse con su mano actual. <br><br>
+
+                <strong>- Reglas del crupier</strong> <br>
+                El crupier debe pedir carta si tiene 16 o menos. <br>
+                El crupier se planta con 17 o más. <br><br>
+
+                <strong>- Cómo se gana</strong> <br>
+                Si tu mano está más cerca de 21 que la del crupier, ganas. <br>
+                Si el crupier se pasa de 21, el jugador gana automáticamente. <br>
+                Si tú te pasas de 21, pierdes automáticamente. <br>
+                Si empatas con el crupier (mismo puntaje), gana el crupier. <br>
+                Si haces Blackjack (As + 10 o figura como primera mano), ganas automáticamente.
+                <br>
+                <br>
+            </p>
+        </div>
+    </main>
+    <footer>
+        <div class="developedBy" id="developedBy">
+            <h3>Developed By SamuelMJ</h3>
+        </div>
+    </footer>
 </body>
 <script src="../scripts/rules.js"></script>
+
 </html>

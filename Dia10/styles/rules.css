@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('../img/fondo_rules.jpg');
-    display: flex;
+    display: block;
     justify-content: center;
     min-height: 100vh;
     background-size: cover;
@@ -12,7 +12,7 @@ body {
 header {
     display: flex;
     background-color: transparent;
-    flex-direction: row;
+    flex-direction: row;    
     width: 100%;
     justify-content: space-between;
 }
@@ -24,7 +24,7 @@ header {
     height: auto;
     background-color: white;
     border-radius: 100%;
-        margin-top: 3vw;
+    margin-top: 4vw;
 }
 
 .tituloRules {
@@ -33,4 +33,20 @@ header {
     color: white;
     font-size: 5vw;
     font-family: Arial, sans-serif;
+}
+
+.textoReglas {
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.developedBy {
+    display: flex;
+    color: white;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>>BlackJack By SamuelMJ</title>
+    <title>BlackJack By SamuelMJ</title>
     <link rel="stylesheet" href="../styles/game.css">
 </head>
+
 <body>
-    <div class="newBaraja" id="newBaraja"></div>
+    <header>
+        <a href="http://127.0.0.1:5500/Dia10/index.html"><img class="exit" src="../img/hacia-atras.svg"></img></a>
+        <h1 class="tituloBJ">BlackJack</h1>
+        <div class=""></div>
+    </header>
+    <main>
+        <div class="containerCardsPlayer" id="containerCardsPlayer">
+            <img src="../img/carta.png" class="cartaImg" id="cartaImg">
+            <img src="../img/carta.png" class="cartaImg" id="cartaImg">
+        </div>
+        <div class="botonesGame">
+            <button class="pedirCarta" id="pedirCarta">Pedir</button>
+            <button class="plantarse" id="plantarse">Plantarse</button>
+        </div>
+        <div class="containerCardsCrupier" id="containerCardsCrupier">
+            <img src="../img/carta.png" class="cartaImg" id="cartaImg">
+            <img src="../img/carta.png" class="cartaImg" id="cartaImg">
+        </div>
+    </main>
+    <footer>
+    </footer>
 </body>
 <script src="../scripts/game.js"></script>
+
 </html>
