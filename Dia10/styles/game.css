@@ -27,13 +27,7 @@ header {
     margin-top: 4vw;
 }
 
-.tituloBJ {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 5vw;
-    font-family: Arial, sans-serif;
-}
+
 
 main {
     display: flex;
@@ -54,12 +48,12 @@ main {
     display: flex;
     width: 15vw;
     height: auto;
-    padding-left: 2vw;
 }
 
 
 .botonesGame{
     display: flex;
+    justify-content: center ;
 }
 
 .pedirCarta {
