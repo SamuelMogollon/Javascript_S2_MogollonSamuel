@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/fondo_rules.jpg');
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-size: cover;
+    align-items: flex-start;
+}
+
+header {
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.exit {
+    display: flex;
+    margin: 0 auto;
+    width: 50px;
+    height: auto;
+    background-color: white;
+    border-radius: 100%;
+        margin-top: 3vw;
+}
+
+.tituloRules {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 5vw;
+    font-family: Arial, sans-serif;
+}
