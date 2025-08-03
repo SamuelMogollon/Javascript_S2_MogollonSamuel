@@ -80,7 +80,8 @@ async function repartirCartasIniciales(url) {
 
 async function pedirCarta(esJugador) {
   try {
-    const data = await hacerPeticion("${API_BASE_URL}${deckId}/draw/?count=1");
+    const data = await hacerPeticion("${API_BASE_URL}${deckId}/draw/?count=1?");
+
     const nuevaCarta = data.cards[0];
 
     if (esJugador) {
@@ -90,16 +91,99 @@ async function pedirCarta(esJugador) {
       document.getElementById("puntosJ").textContent = puntuacionJugador;
 
       if (puntuacionJugador > 21) {
-        alert("¡Te pasaste de 21! Has perdido. ❌");
+        alert("¡Te pasaste de 21! Has perdido. ");
         terminarJuego();
-      } else {
-        cartasCrupier.push(nuevaCarta);
-        mostrarCarta(containerCardsCrupier, nuevaCarta);
-        puntuacionCrupier = calcularPuntuacion(cartasCrupier);
-        document.getElementById("puntosC").textContent = puntuacionCrupier;
       }
+    } else {
+      cartasCrupier.push(nuevaCarta);
+      mostrarCarta(containerCardsCrupier, nuevaCarta);
+      puntuacionCrupier = calcularPuntuacion(cartasCrupier);
+      document.getElementById("puntosC").textContent = puntuacionCrupier;
     }
   } catch (error) {
-    console.error("Error al pedir carta: ", error);
+    console.error("Error al pedir carta:", error);
   }
 }
+
+function plantarse() {
+  terminarJuego();
+
+  const cartasOcultas = containerCardsCrupier.querySelector(".cartaImg.oculta");
+  if (cartasOcultas) {
+    cartasOcultas.src = cartasOcultas.dataset.originalScr;
+    cartasOcultas.classList.remove("oculta");
+    puntuacionCrupier = calcularPuntuacion(cartasCrupier);
+    puntosCrupierElem.textContent = puntuacionCrupier;
+  }
+}
+
+const turnoCrupier = async () => {
+  while (puntuacionCrupier < 17) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await pedirCarta(false);
+  }
+  determinarGanador();
+};
+turnoCrupier();
+
+function mostrarCarta(contenedor, carta, oculta = false) {
+  const img = document.createElement("img");
+  img.src = carta.image;
+  img.alt = `${carta.value} de ${carta.suit}`;
+  img.classList.add("cartaImg");
+
+  if (oculta) {
+    img.dataset.originalSrc = carta.image;
+    img.src = "https://www.deckofcardsapi.com/static/img/back.png";
+    img.classList.add("oculta");
+  }
+
+  contenedor.appendChild(img);
+}
+
+function calcularPuntuacion(cartas) {
+  let puntuacion = 0;
+  let ases = 0;
+
+  for (const carta of cartas) {
+    const valor = carta.value;
+    if (["JACK", "QUEEN", "KING"].includes(valor)) {
+      puntuacion += 10;
+    }
+    else if (valor === "ACE") {
+      ases++;
+      puntuacion += 11;
+    }
+    else {
+      puntuacion += parseInt(valor);
+    }
+  }
+
+  while (puntuacion > 21 && ases > 0) {
+    puntuacion -= 10;
+    ases--;
+  }
+  return puntuacion;
+}
+
+function terminarJuego() {
+  pedirCartaBtn.disabled = true;
+  plantarseBtn.disabled = true;
+}
+
+function determinarGanador() {
+  let mensaje = "";
+  if (puntuacionCrupier > 21) {
+    mensaje = "¡El crupier se ha pasado! ¡Ganaste!";
+  } else if (puntuacionJugador > puntuacionCrupier) {
+    mensaje = "¡Ganaste! Tu puntuación es más alta.";
+  } else if (puntuacionJugador < puntuacionCrupier) {
+    mensaje = "El crupier gana. Su puntuación es más alta.";
+  } else {
+    mensaje = "¡Empate! El crupier gana.";
+  }
+
+  alert(mensaje);
+}
+
+iniciarJuego();

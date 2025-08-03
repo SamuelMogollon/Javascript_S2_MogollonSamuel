@@ -1,12 +1,13 @@
 body {
-    margin: 0;
+    margin: 2vw;
+    margin-top: -1vw;
     padding: 0;
     background-image: url('../img/fondo_rules.jpg');
     display: block;
     justify-content: center;
     min-height: 100vh;
     background-size: cover;
-    align-items: flex-start;
+    align-items: flex-start;    
 }
 
 header {
@@ -46,10 +47,17 @@ main {
 
 .cartaImg {
     display: flex;
-    width: 15vw;
     height: auto;
+    width: 12vw;
 }
 
+.containerCardsPlayer {
+    display: flex;
+}
+
+.containerCardsCrupier {
+    display: flex;
+}
 
 .botonesGame{
     display: flex;
@@ -89,6 +97,7 @@ main {
 .puntosC {
     display: flex;
     color: white;
+    
 }
 
 .puntosJ {
