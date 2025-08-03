@@ -53,7 +53,7 @@ main {
 
 .botonesGame{
     display: flex;
-    justify-content: center ;
+    justify-content: space-around;
 }
 
 .pedirCarta {
@@ -84,4 +84,14 @@ main {
     border: none;
     color: black;
     background: white;
+}
+
+.puntosC {
+    display: flex;
+    color: white;
+}
+
+.puntosJ {
+    display: flex;
+    color: white;
 }
