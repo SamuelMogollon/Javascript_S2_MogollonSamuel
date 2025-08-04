@@ -44,7 +44,9 @@ function hacerPeticion(url) {
 
 async function iniciarJuego(url) {
   try {
-    const data = await hacerPeticion(`${API_BASE_URL}new/shuffle/?deck_count=1`);
+    const data = await hacerPeticion(
+      `${API_BASE_URL}new/shuffle/?deck_count=1`
+    );
     deckId = data.deck_id;
 
     containerCardsPlayer.innerHTML = "";
@@ -80,8 +82,10 @@ async function repartirCartasIniciales() {
     puntuacionJugador = calcularPuntuacion(cartasJugador);
     puntuacionCrupier = calcularPuntuacion([cartasCrupier[0]]);
 
-    document.getElementById("puntosJ").textContent = "Puntaje del Jugador: " + puntuacionJugador;
-    document.getElementById("puntosC").textContent = "Puntaje del Crupier: " + puntuacionCrupier;
+    document.getElementById("puntosJ").textContent =
+      "Puntaje del Jugador: " + puntuacionJugador;
+    document.getElementById("puntosC").textContent =
+      "Puntaje del Crupier: " + puntuacionCrupier;
 
     const puntosJugadorElem = document.getElementById("puntosJ");
     const puntosCrupierElem = document.getElementById("puntosC");
@@ -100,11 +104,12 @@ async function pedirCarta(esJugador) {
     const data = await hacerPeticion(`${API_BASE_URL}${deckId}/draw/?count=1`);
     const nuevaCarta = data?.cards?.[0];
 
-     if (esJugador) {
+    if (esJugador) {
       cartasJugador.push(nuevaCarta);
       mostrarCarta(containerCardsPlayer, nuevaCarta);
       puntuacionJugador = calcularPuntuacion(cartasJugador);
-      document.getElementById("puntosJ").textContent = puntuacionJugador;
+      document.getElementById("puntosJ").textContent =
+        "Puntaje del Jugador: " + puntuacionJugador;
 
       if (puntuacionJugador > 21) {
         alert("¡Te pasaste de 21! Has perdido.");
@@ -114,9 +119,11 @@ async function pedirCarta(esJugador) {
       cartasCrupier.push(nuevaCarta);
       mostrarCarta(containerCardsCrupier, nuevaCarta);
       puntuacionCrupier = calcularPuntuacion(cartasCrupier);
-      document.getElementById("puntosC").textContent = puntuacionCrupier;
+      document.getElementById("puntosC").textContent =
+        "Puntaje del Crupier: " + puntuacionCrupier;
     }
 
+    return nuevaCarta;
   } catch (error) {
     console.error("Error al pedir carta:", error);
     return null;
@@ -124,20 +131,24 @@ async function pedirCarta(esJugador) {
 }
 
 function plantarse() {
-  terminarJuego();
-
   const cartasOcultas = containerCardsCrupier.querySelector(".cartaImg.oculta");
   if (cartasOcultas) {
-    cartasOcultas.src = cartasOcultas.dataset.originalScr;
+    cartasOcultas.src = cartasOcultas.dataset.originalSrc;
     cartasOcultas.classList.remove("oculta");
-    puntuacionCrupier = calcularPuntuacion(cartasCrupier);
-    puntosCrupierElem.textContent = puntuacionCrupier;
   }
+
+  puntuacionCrupier = calcularPuntuacion(cartasCrupier);
+  puntosCrupierElem.textContent = "Puntaje del Crupier: " + puntuacionCrupier;
+
+  pedirCartaBtn.disabled = true;
+  plantarseBtn.disabled = true;
+
+  turnoCrupier();
 }
 
 const turnoCrupier = async () => {
   while (puntuacionCrupier < 17) {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     const nuevaCarta = await pedirCarta(false);
   }
   determinarGanador();
@@ -166,12 +177,10 @@ function calcularPuntuacion(cartas) {
     const valor = carta.value;
     if (["JACK", "QUEEN", "KING"].includes(valor)) {
       puntuacion += 10;
-    }
-    else if (valor === "ACE") {
+    } else if (valor === "ACE") {
       ases++;
       puntuacion += 11;
-    }
-    else {
+    } else {
       puntuacion += parseInt(valor);
     }
   }
@@ -199,7 +208,6 @@ function determinarGanador() {
   } else {
     mensaje = "¡Empate! El crupier gana.";
   }
-
   alert(mensaje);
 }
 
