@@ -74,7 +74,7 @@ main {
 .cartaImg {
     display: flex;
     height: auto;
-    width: 150px;
+    width: 260px;
     margin: 0.5vw;
     transition: transform 0.3s ease;
 }
@@ -98,7 +98,6 @@ main {
     justify-content: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    height: 1vw;
 }
 
 .pedirCarta {
