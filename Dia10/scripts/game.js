@@ -1,4 +1,4 @@
-const url = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
+const API_BASE_URL = "https://deckofcardsapi.com/api/deck/";
 let deckId = "";
 let cartasJugador = [];
 let cartasCrupier = [];
@@ -9,28 +9,42 @@ const containerCardsPlayer = document.getElementById("containerCardsPlayer");
 const containerCardsCrupier = document.getElementById("containerCardsCrupier");
 const pedirCartaBtn = document.getElementById("pedirCarta");
 const plantarseBtn = document.getElementById("plantarse");
-
 pedirCartaBtn.addEventListener("click", () => pedirCarta(true));
 plantarseBtn.addEventListener("click", plantarse);
+const puntosJugadorElem = document.getElementById("puntosJ");
+const puntosCrupierElem = document.getElementById("puntosC");
 
 function hacerPeticion(url) {
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const data = JSON.parse(xhr.responseText);
-      console.log(data);
-    }
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          try {
+            const data = JSON.parse(xhr.responseText);
+            resolve(data);
+          } catch (e) {
+            reject(new Error("Error al analizar la respuesta JSON."));
+          }
+        } else {
+          reject(new Error(`Error de red: ${xhr.status} ${xhr.statusText}`));
+        }
+      }
+    };
+
+    xhr.onerror = function () {
+      reject(new Error("Ocurrió un error de red."));
+    };
+
     xhr.send();
-  };
+  });
 }
-hacerPeticion(url);
 
 async function iniciarJuego(url) {
   try {
-    const data = await hacerPeticion(
-      `${API_BASE_URL}new/shuffle/?deck_count=6`
-    );
+    const data = await hacerPeticion(`${API_BASE_URL}new/shuffle/?deck_count=1`);
     deckId = data.deck_id;
 
     containerCardsPlayer.innerHTML = "";
@@ -50,9 +64,9 @@ async function iniciarJuego(url) {
   }
 }
 
-async function repartirCartasIniciales(url) {
+async function repartirCartasIniciales() {
   try {
-    const data = await hacerPeticion("${API_BASE_URL}${deckId}/draw/?count=4");
+    const data = await hacerPeticion(`${API_BASE_URL}${deckId}/draw/?count=4`);
 
     cartasJugador = [data.cards[0], data.cards[1]];
     cartasCrupier = [data.cards[2], data.cards[3]];
@@ -66,8 +80,11 @@ async function repartirCartasIniciales(url) {
     puntuacionJugador = calcularPuntuacion(cartasJugador);
     puntuacionCrupier = calcularPuntuacion([cartasCrupier[0]]);
 
-    document.getElementById("puntosJ").textContent = puntuacionJugador;
-    document.getElementById("puntosC").textContent = puntuacionCrupier;
+    document.getElementById("puntosJ").textContent = "Puntaje del Jugador: " + puntuacionJugador;
+    document.getElementById("puntosC").textContent = "Puntaje del Crupier: " + puntuacionCrupier;
+
+    const puntosJugadorElem = document.getElementById("puntosJ");
+    const puntosCrupierElem = document.getElementById("puntosC");
 
     if (puntuacionJugador === 21) {
       alert("¡Blackjack! Ganaste automáticamente.");
@@ -80,18 +97,17 @@ async function repartirCartasIniciales(url) {
 
 async function pedirCarta(esJugador) {
   try {
-    const data = await hacerPeticion("${API_BASE_URL}${deckId}/draw/?count=1?");
+    const data = await hacerPeticion(`${API_BASE_URL}${deckId}/draw/?count=1`);
+    const nuevaCarta = data?.cards?.[0];
 
-    const nuevaCarta = data.cards[0];
-
-    if (esJugador) {
+     if (esJugador) {
       cartasJugador.push(nuevaCarta);
       mostrarCarta(containerCardsPlayer, nuevaCarta);
       puntuacionJugador = calcularPuntuacion(cartasJugador);
       document.getElementById("puntosJ").textContent = puntuacionJugador;
 
       if (puntuacionJugador > 21) {
-        alert("¡Te pasaste de 21! Has perdido. ");
+        alert("¡Te pasaste de 21! Has perdido.");
         terminarJuego();
       }
     } else {
@@ -100,8 +116,10 @@ async function pedirCarta(esJugador) {
       puntuacionCrupier = calcularPuntuacion(cartasCrupier);
       document.getElementById("puntosC").textContent = puntuacionCrupier;
     }
+
   } catch (error) {
     console.error("Error al pedir carta:", error);
+    return null;
   }
 }
 
@@ -119,12 +137,11 @@ function plantarse() {
 
 const turnoCrupier = async () => {
   while (puntuacionCrupier < 17) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    await pedirCarta(false);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const nuevaCarta = await pedirCarta(false);
   }
   determinarGanador();
 };
-turnoCrupier();
 
 function mostrarCarta(contenedor, carta, oculta = false) {
   const img = document.createElement("img");

@@ -7,7 +7,8 @@ body {
     justify-content: center;
     min-height: 100vh;
     background-size: cover;
-    align-items: flex-start;    
+    align-items: flex-start;
+    overflow: hidden;
 }
 
 header {
@@ -28,13 +29,10 @@ header {
     margin-top: 4vw;
 }
 
-
-
 main {
     display: flex;
-    justify-content: center ;
+    justify-content: space-around ;
     align-items: center;
-    
 }
 
 .containerCardsPlayer {
