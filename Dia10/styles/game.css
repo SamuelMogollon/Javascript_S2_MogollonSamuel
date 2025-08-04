@@ -26,27 +26,61 @@ header {
     height: auto;
     background-color: white;
     border-radius: 100%;
-    margin-top: 4vw;
+    margin-top: 3vw;
+}
+
+.refresh {
+    display: flex;
+    margin: 0 auto;
+    width: 50px;
+    height: auto;
+    background-color: white;
+    border-radius: 100%;
+    margin-top: 3vw;
 }
 
 main {
     display: flex;
+    align-items: center;    
+}
+
+.etiquetasJugadores {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 5vw;
+  margin-bottom: 1vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: white;
+}
+
+.contenedorDeCartas {
+    display: flex;
     justify-content: space-around ;
-    align-items: center;
+    width: 100%;
 }
 
-.containerCardsPlayer {
+
+.jugador, .crupier {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.containerCardsPlayer.containerCardsCrupier {
     display: block;
 }
 
-.containerCardsCrupier {
-    display: block;
-}
 
 .cartaImg {
     display: flex;
     height: auto;
-    width: 12vw;
+    width: 150px;
+    margin: 0.5vw;
+    transition: transform 0.3s ease;
+}
+
+.cartaImg:hover {
+  transform: scale(1.1);
 }
 
 .containerCardsPlayer {
@@ -60,6 +94,8 @@ main {
 .botonesGame{
     display: flex;
     justify-content: space-around;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .pedirCarta {
@@ -75,6 +111,8 @@ main {
     border: none;
     color: black;
     background: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .plantarse {
@@ -90,12 +128,37 @@ main {
     border: none;
     color: black;
     background: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.mensaje {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.8); 
+  color: white;
+  padding: 15px 20px;
+  margin: 15px auto;
+  text-align: center;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 80%;
+  font-size: 1.2em;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  position: fixed;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mensaje.activo {
+  display: block;
 }
 
 .puntosC {
     display: flex;
     color: white;
-    
 }
 
 .puntosJ {

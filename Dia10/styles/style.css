@@ -22,7 +22,8 @@ body {
     align-items: center;
     color: white;
     font-size: 5vw;
-    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .botonLogin {
@@ -38,7 +39,8 @@ body {
     border: none;
     color: black;
     background: white;
-    
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .botonRules{
@@ -54,11 +56,12 @@ body {
     border: none;
     color: black;
     background: white;
-
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 .developedBy {
     color: white;
-    font-family: Arial, sans-serif;
-    margin-top: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 

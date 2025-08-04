@@ -70,6 +70,11 @@ async function repartirCartasIniciales() {
   try {
     const data = await hacerPeticion(`${API_BASE_URL}${deckId}/draw/?count=4`);
 
+    if (data.cards.length < 4) {
+      mensajeJuego("No hay suficientes cartas en el mazo para continuar.");
+      return;
+    }
+
     cartasJugador = [data.cards[0], data.cards[1]];
     cartasCrupier = [data.cards[2], data.cards[3]];
 
@@ -87,11 +92,8 @@ async function repartirCartasIniciales() {
     document.getElementById("puntosC").textContent =
       "Puntaje del Crupier: " + puntuacionCrupier;
 
-    const puntosJugadorElem = document.getElementById("puntosJ");
-    const puntosCrupierElem = document.getElementById("puntosC");
-
     if (puntuacionJugador === 21) {
-      alert("¡Blackjack! Ganaste automáticamente.");
+      mensajeJuego("¡Blackjack! Ganaste automáticamente.");
       terminarJuego();
     }
   } catch (error) {
@@ -112,7 +114,7 @@ async function pedirCarta(esJugador) {
         "Puntaje del Jugador: " + puntuacionJugador;
 
       if (puntuacionJugador > 21) {
-        alert("¡Te pasaste de 21! Has perdido.");
+        mensajeJuego("¡Te pasaste de 21! Has perdido.");
         terminarJuego();
       }
     } else {
@@ -147,9 +149,11 @@ function plantarse() {
 }
 
 const turnoCrupier = async () => {
+  pedirCartaBtn.disabled = true;
+  plantarseBtn.disabled = true;
   while (puntuacionCrupier < 17) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const nuevaCarta = await pedirCarta(false);
+    await pedirCarta(false);
   }
   determinarGanador();
 };
@@ -208,7 +212,19 @@ function determinarGanador() {
   } else {
     mensaje = "¡Empate! El crupier gana.";
   }
-  alert(mensaje);
+  mensajeJuego(mensaje);
+}
+
+function mensajeJuego(texto, duracion = 3000) {
+  const mensajeElem = document.getElementById("mensajeJuego");
+  mensajeElem.textContent = texto;
+  mensajeElem.classList.add("activo");
+
+  setTimeout(() => {
+    mensajeElem.classList.remove("activo");
+  }, duracion);
 }
 
 iniciarJuego();
+
+

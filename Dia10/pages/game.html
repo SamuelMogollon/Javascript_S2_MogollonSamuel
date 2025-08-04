@@ -11,10 +11,15 @@
 <body>
     <header>
         <a href="../index.html"><img class="exit" src="../img/hacia-atras.svg"></img></a>
-        <div class=""></div>
+        <a href="../pages/game.html"><img class="refresh" src="../img/refrescar.svg"></img></a>
     </header>
+    <div class="etiquetasJugadores">
+  <div class="jugador">JUGADOR</div>
+  <div class="crupier">CRUPIER</div>
+</div>
     <main>
-        <div class="containerCardsPlayer" id="containerCardsPlayer">
+         <div class="contenedorDeCartas">
+            <div class="containerCardsPlayer" id="containerCardsPlayer">
             <img src="../img/carta.png" class="cartaImg" id="cartaImg">
             <img src="../img/carta.png" class="cartaImg" id="cartaImg">
         </div>
@@ -25,9 +30,10 @@
     </main>
     <br><br>
     <footer>
+        <div id="mensajeJuego" class="mensaje"></div>
         <div class="botonesGame">
             <button class="pedirCarta" id="pedirCarta">PEDIR</button>
-            <div textoPuntaje>
+            <div class="textoPuntaje">
                 <span class="puntosJ" id="puntosJ">Puntos del Jugador:</span>
                 <span class="puntosC" id="puntosC">puntos del Crupier: </span>
             </div>
