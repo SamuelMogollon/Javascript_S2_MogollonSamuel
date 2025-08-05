@@ -8,21 +8,27 @@ function buscarPersonaje() {
     xhr.open("GET", url, true);
 
     xhr.onreadystatechange = function () {
-        try {
-            const daticos = JSON.parse(xhr.responseText);
-            if (daticos.results && daticos.results.length > 0) {
-                for (let i = 0; i < daticos.results.length; i++) {
-                    let resultado = document.getElementById("resultados");
-                    resultado.innerHTML += `
+        if (xhr.readyState === 3) {
+            
+            console.log ("cargando...")
+        }
+        else if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+                const daticos = JSON.parse(xhr.responseText);
+                if (daticos.results && daticos.results.length > 0) {
+                    for (let i =0; i < daticos.results.length; i++) {
+                        let resultado = document.getElementById("resultados");
+                        resultado.innerHTML += `
                         <div class="card">
                         <img src="${daticos["results"][i]["image"]["url"]}">
                         <h3>${daticos["results"][i]["name"]}</h3>
                         </div>`
-                }
+                    }
+                }    
             }
-        }
-        catch (err) {
-            console.log(err.message);
+            catch (err) {
+                console.log (err.message);
+            }
         }
     }
     xhr.send();
