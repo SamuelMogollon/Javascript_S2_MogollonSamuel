@@ -1,7 +1,7 @@
 const body = document.getElementById("fondo");
 
 body.style.backgroundImage = ("url('./resources/img/fondoSuperHeroesAPI.jpg')")
-
+body.style.backgroundSize = "cover";
 
 function buscarPersonaje() {
   document.getElementById("resultados").innerHTML = ``;
@@ -24,9 +24,9 @@ function buscarPersonaje() {
             resultado.innerHTML += `
                         <div class= "d-flex justify-content-center col-2 ">
                             <div class="card p-2">
-                                <img class="" src="${daticos["results"][i]["image"]["url"]}" class="card-img-top">
+                                <img class="rounded-2" src="${daticos["results"][i]["image"]["url"]}" class="card-img-top">
                                 <div class="card-body align-items-center ">
-                                <p class="card-text">${daticos["results"][i]["name"]}</p>
+                                <p class="card-text ">${daticos["results"][i]["name"]}</p>
                                 </div>
                             </div>
                         </div>`;
