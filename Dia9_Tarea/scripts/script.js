@@ -1,35 +1,66 @@
-//creo una funcion para buscar el pokemom
-function buscarP(nombrePokemon) {
-    //creo una instancia de la clase xmlhttpRequest
-    const xml = new XMLHttpRequest()
-    //declaro una variable para guardar el endpoint
-    const url = `https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`
-    //creo la peticion al endpoint
-    xml.open("GET", url, true);
-    // el metodo que seva a ejecutar cada vez que la peticion cambie de estado
-    xml.onreadystatechange = function () {
-        //creo una condicional que me diga si se esta ejecutando la funcion
-        if (xml.readyState === 3) {
-            console.log("cargando...");
-            // cxomparo la solicitud completa para comprobar si es exitosa
-        } else if (xml.readyState === 4 && xml.status === 200) {
-            try {
-                //guarda la respuesta de la peticion en la variable "respuesta"
-                let respuesta = JSON.parse(xml.responseText)
-                document.getElementById("")
-            } catch (err) {
-                console.log(err.message);
-            }
-        }
-    };
-    xml.send();
+const pokemonName = document.querySelector('.pokemon_name');
+const pokemonNumber = document.querySelector('.pokemon_number');
+const pokemonImage = document.querySelector('.pokemon__image');
+
+const form = document.querySelector('.form');
+const input = document.querySelector('.input_search');
+const buttonPrev = document.querySelector('.btn-prev');
+const buttonNext = document.querySelector('.btn-next');
+
+const audioPokemon = document.querySelector('.gritos');
+
+let searchPokemon = 1;
+
+const fetchPokemon = async (pokemon) =>{
+
+    const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    
+
+    if(APIResponse.status == 200){
+        const data = await APIResponse.json();
+        return data;
+    }
 }
 
+const renderPokemon = async (pokemon) => {
+    pokemonName.innerHTML = 'Loading...';
+    pokemonNumber.innerHTML ='';
 
+    const data = await fetchPokemon(pokemon);
 
-let nombrePokemon = document.getElementById("textbox");
-nombrePokemon.addEventListener("keyup", function (presionarEnter) {
-    if (presionarEnter.key === "Enter") {
-        buscarP(nombrePokemon.value)
+    if (data){
+        pokemonImage.style.display='block';
+        pokemonName.innerHTML=data.name;
+        pokemonNumber.innerHTML = data.id;
+        pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+        audioPokemon.src = data.cries.latest;
+        input.value='';
+        searchPokemon=data.id;
+    }else{
+        pokemonImage.style.display='none';
+        pokemonName.innerHTML="No se encontro :sad feis:";
+        pokemonNumber.innerHTML= '';
     }
+
+}
+
+form.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    renderPokemon(input.value.toLowerCase());
 })
+
+buttonPrev.addEventListener('click',()=>{
+    if (searchPokemon >1){
+        searchPokemon -= 1;
+        renderPokemon(searchPokemon);
+    }
+});
+
+buttonNext.addEventListener('click',()=>{
+    
+        searchPokemon += 1;
+        renderPokemon(searchPokemon);
+    
+});
+
+renderPokemon(searchPokemon);

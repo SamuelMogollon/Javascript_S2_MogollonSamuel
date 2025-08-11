@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="shortcut icon" href="./favicons/favicon-16x16.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/style.css">
+    <title>Pokedex</title>
 </head>
+
 <body>
-    <div class="contenedor1">
-        <img class="pokedex" src="img/pokedex.png">
-        <div id="mostrar" class="mostrar">
+    <main>
+
+        <img src="#" alt="pokemon" class="pokemon__image">
+        <h1 class="pokemon_data">
+            <span class="pokemon_number"></span> -
+            <span class="pokemon_name"></span>
+        </h1>
+
+        <form class="form">
+            <input type="search" class="input_search" placeholder="Name or Number" required>
+        </form>
+
+        <div class="buttons">
+            <button class="button btn-prev">Prev &lt</button>
+            <button class="button btn-next">Next &gt</button>
         </div>
-        <input type="search" id="textbox" class="textbox" placeholder="Name or Number">
-        <button id="boton1" class="boton1">Prev < </button>
-        <button id="boton2" class="boton2">Next > </button>
-    </div>
+        <img src="./images/pokedex.png" alt="pokedex" class="pokedex">
+        <audio autoplay src="" class="gritos"></audio>
+    </main>
 </body>
 <script src="./scripts/script.js"></script>
+
 </html>
